@@ -1,0 +1,192 @@
+  [1m[35m (105.5ms)[0m  [1m[35mCREATE DATABASE "lab_03_martin_ks01_development" ENCODING = 'unicode' /*application='Lab03MartinKs01'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='Lab03MartinKs01'*/[0m
+  [1m[35m (146.1ms)[0m  [1m[35mCREATE DATABASE "lab_03_martin_ks01_development" ENCODING = 'unicode' /*application='Lab03MartinKs01'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='Lab03MartinKs01'*/[0m
+  [1m[35m (43.4ms)[0m  [1m[35mCREATE DATABASE "lab_03_martin_ks01_test" ENCODING = 'unicode' /*application='Lab03MartinKs01'*/[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='Lab03MartinKs01'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Lab03MartinKs01'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5736534558738216660) /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-04-09 16:19:37.980569', '2026-04-09 16:19:37.980570') RETURNING "key" /*application='Lab03MartinKs01'*/[0m
+Migrating to CreateOwners (20260409161725)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "owners" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "email" character varying, "phone" character varying, "address" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260409161725') RETURNING "version" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+Migrating to CreatePets (20260409161829)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "pets" ("id" bigserial primary key, "name" character varying, "species" character varying, "breed" character varying, "date_of_birth" date, "weight" decimal, "owner_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (2.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260409161829') RETURNING "version" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+Migrating to CreateVets (20260409161834)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "vets" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "email" character varying, "phone" character varying, "specialization" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260409161834') RETURNING "version" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+Migrating to CreateAppointments (20260409161845)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE TABLE "appointments" ("id" bigserial primary key, "pet_id" integer, "vet_id" integer, "date" timestamp(6), "reason" character varying, "status" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260409161845') RETURNING "version" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+Migrating to CreateTreatments (20260409161849)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "treatments" ("id" bigserial primary key, "appointment_id" integer, "name" character varying, "medication" character varying, "dosage" character varying, "notes" text, "administered_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260409161849') RETURNING "version" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(5736534558738216660) /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03MartinKs01'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='Lab03MartinKs01'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Lab03MartinKs01'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='Lab03MartinKs01'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Count (41.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "owners" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTreatment Load (0.5ms)[0m  [1m[34mSELECT "treatments".* FROM "treatments" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mAppointment Load (0.4ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mPet Load (0.5ms)[0m  [1m[34mSELECT "pets".* FROM "pets" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Load (0.4ms)[0m  [1m[34mSELECT "vets".* FROM "vets" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Load (0.2ms)[0m  [1m[34mSELECT "owners".* FROM "owners" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Create (0.7ms)[0m  [1m[32mINSERT INTO "owners" ("first_name", "last_name", "email", "phone", "address", "created_at", "updated_at") VALUES ('Martin', 'Karl', 'martin@email.com', '934741283', 'Cristobal colon 123, Santiago', '2026-04-09 16:37:56.765189', '2026-04-09 16:37:56.765189') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Create (0.4ms)[0m  [1m[32mINSERT INTO "owners" ("first_name", "last_name", "email", "phone", "address", "created_at", "updated_at") VALUES ('Sofia', 'Torres', 'sofia@email.com', '986482163', 'av. la plaza 132, Valparaiso', '2026-04-09 16:37:56.767371', '2026-04-09 16:37:56.767371') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Create (0.4ms)[0m  [1m[32mINSERT INTO "owners" ("first_name", "last_name", "email", "phone", "address", "created_at", "updated_at") VALUES ('Diego', 'Morales', 'diego@email.com', '938902751', 'aysen 123, Concepcion', '2026-04-09 16:37:56.768496', '2026-04-09 16:37:56.768496') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Create (0.5ms)[0m  [1m[32mINSERT INTO "vets" ("first_name", "last_name", "email", "phone", "specialization", "created_at", "updated_at") VALUES ('Ana', 'Garcia', 'ana@vetclinic.com', '998143276', 'General Practice', '2026-04-09 16:37:56.771263', '2026-04-09 16:37:56.771263') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Create (0.4ms)[0m  [1m[32mINSERT INTO "vets" ("first_name", "last_name", "email", "phone", "specialization", "created_at", "updated_at") VALUES ('Carlos', 'Lopez', 'carlos@vetclinic.com', '908154761', 'Surgery', '2026-04-09 16:37:56.772683', '2026-04-09 16:37:56.772683') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTreatment Load (0.1ms)[0m  [1m[34mSELECT "treatments".* FROM "treatments" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mAppointment Load (0.1ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mPet Load (0.1ms)[0m  [1m[34mSELECT "pets".* FROM "pets" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Load (0.1ms)[0m  [1m[34mSELECT "vets".* FROM "vets" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Destroy (0.8ms)[0m  [1m[31mDELETE FROM "vets" WHERE "vets"."id" = 1 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Destroy (0.4ms)[0m  [1m[31mDELETE FROM "vets" WHERE "vets"."id" = 2 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Load (0.2ms)[0m  [1m[34mSELECT "owners".* FROM "owners" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Destroy (0.4ms)[0m  [1m[31mDELETE FROM "owners" WHERE "owners"."id" = 1 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Destroy (0.4ms)[0m  [1m[31mDELETE FROM "owners" WHERE "owners"."id" = 2 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Destroy (0.4ms)[0m  [1m[31mDELETE FROM "owners" WHERE "owners"."id" = 3 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Create (0.6ms)[0m  [1m[32mINSERT INTO "owners" ("first_name", "last_name", "email", "phone", "address", "created_at", "updated_at") VALUES ('Martin', 'Karl', 'martin@email.com', '934741283', 'Cristobal colon 123, Santiago', '2026-04-09 16:39:00.904998', '2026-04-09 16:39:00.904998') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Create (0.4ms)[0m  [1m[32mINSERT INTO "owners" ("first_name", "last_name", "email", "phone", "address", "created_at", "updated_at") VALUES ('Sofia', 'Torres', 'sofia@email.com', '986482163', 'av. la plaza 132, Valparaiso', '2026-04-09 16:39:00.906439', '2026-04-09 16:39:00.906439') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Create (0.4ms)[0m  [1m[32mINSERT INTO "owners" ("first_name", "last_name", "email", "phone", "address", "created_at", "updated_at") VALUES ('Diego', 'Morales', 'diego@email.com', '938902751', 'aysen 123, Concepcion', '2026-04-09 16:39:00.907524', '2026-04-09 16:39:00.907524') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Create (0.4ms)[0m  [1m[32mINSERT INTO "vets" ("first_name", "last_name", "email", "phone", "specialization", "created_at", "updated_at") VALUES ('Ana', 'Garcia', 'ana@vetclinic.com', '998143276', 'General Practice', '2026-04-09 16:39:00.908636', '2026-04-09 16:39:00.908636') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Create (0.4ms)[0m  [1m[32mINSERT INTO "vets" ("first_name", "last_name", "email", "phone", "specialization", "created_at", "updated_at") VALUES ('Carlos', 'Lopez', 'carlos@vetclinic.com', '908154761', 'Surgery', '2026-04-09 16:39:00.909756', '2026-04-09 16:39:00.909756') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTreatment Load (0.3ms)[0m  [1m[34mSELECT "treatments".* FROM "treatments" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mAppointment Load (0.3ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT "pets".* FROM "pets" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Load (0.3ms)[0m  [1m[34mSELECT "vets".* FROM "vets" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Destroy (0.5ms)[0m  [1m[31mDELETE FROM "vets" WHERE "vets"."id" = 3 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Destroy (0.3ms)[0m  [1m[31mDELETE FROM "vets" WHERE "vets"."id" = 4 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Load (0.2ms)[0m  [1m[34mSELECT "owners".* FROM "owners" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Destroy (0.4ms)[0m  [1m[31mDELETE FROM "owners" WHERE "owners"."id" = 4 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Destroy (0.4ms)[0m  [1m[31mDELETE FROM "owners" WHERE "owners"."id" = 5 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Destroy (0.3ms)[0m  [1m[31mDELETE FROM "owners" WHERE "owners"."id" = 6 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Create (0.5ms)[0m  [1m[32mINSERT INTO "owners" ("first_name", "last_name", "email", "phone", "address", "created_at", "updated_at") VALUES ('Martin', 'Karl', 'martin@email.com', '934741283', 'Cristobal colon 123, Santiago', '2026-04-09 16:42:58.263979', '2026-04-09 16:42:58.263979') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Create (0.4ms)[0m  [1m[32mINSERT INTO "owners" ("first_name", "last_name", "email", "phone", "address", "created_at", "updated_at") VALUES ('Sofia', 'Torres', 'sofia@email.com', '986482163', 'av. la plaza 132, Valparaiso', '2026-04-09 16:42:58.265318', '2026-04-09 16:42:58.265318') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Create (0.4ms)[0m  [1m[32mINSERT INTO "owners" ("first_name", "last_name", "email", "phone", "address", "created_at", "updated_at") VALUES ('Diego', 'Morales', 'diego@email.com', '938902751', 'aysen 123, Concepcion', '2026-04-09 16:42:58.266368', '2026-04-09 16:42:58.266368') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Create (0.5ms)[0m  [1m[32mINSERT INTO "vets" ("first_name", "last_name", "email", "phone", "specialization", "created_at", "updated_at") VALUES ('Ana', 'Garcia', 'ana@vetclinic.com', '998143276', 'General Practice', '2026-04-09 16:42:58.267420', '2026-04-09 16:42:58.267420') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Create (0.4ms)[0m  [1m[32mINSERT INTO "vets" ("first_name", "last_name", "email", "phone", "specialization", "created_at", "updated_at") VALUES ('Carlos', 'Lopez', 'carlos@vetclinic.com', '908154761', 'Surgery', '2026-04-09 16:42:58.268555', '2026-04-09 16:42:58.268555') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mPet Create (0.9ms)[0m  [1m[32mINSERT INTO "pets" ("name", "species", "breed", "date_of_birth", "weight", "owner_id", "created_at", "updated_at") VALUES ('Max', 'Dog', 'Labrador', '2019-03-15', 28.5, 7, '2026-04-09 16:42:58.277848', '2026-04-09 16:42:58.277848') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mPet Create (0.4ms)[0m  [1m[32mINSERT INTO "pets" ("name", "species", "breed", "date_of_birth", "weight", "owner_id", "created_at", "updated_at") VALUES ('Luna', 'Cat', 'Siamese', '2021-07-20', 4.2, 7, '2026-04-09 16:42:58.280215', '2026-04-09 16:42:58.280215') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mPet Create (0.4ms)[0m  [1m[32mINSERT INTO "pets" ("name", "species", "breed", "date_of_birth", "weight", "owner_id", "created_at", "updated_at") VALUES ('Coco', 'Rabbit', 'Holland Lop', '2022-01-10', 1.8, 8, '2026-04-09 16:42:58.281404', '2026-04-09 16:42:58.281404') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mPet Create (0.4ms)[0m  [1m[32mINSERT INTO "pets" ("name", "species", "breed", "date_of_birth", "weight", "owner_id", "created_at", "updated_at") VALUES ('Lupe', 'Dog', 'Borde Collie', '2016-02-16', 25.0, 8, '2026-04-09 16:42:58.282532', '2026-04-09 16:42:58.282532') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mPet Create (0.4ms)[0m  [1m[32mINSERT INTO "pets" ("name", "species", "breed", "date_of_birth", "weight", "owner_id", "created_at", "updated_at") VALUES ('Mia', 'Cat', 'Persian', '2021-11-30', 3.9, 9, '2026-04-09 16:42:58.283700', '2026-04-09 16:42:58.283700') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mAppointment Create (0.8ms)[0m  [1m[32mINSERT INTO "appointments" ("pet_id", "vet_id", "date", "reason", "status", "created_at", "updated_at") VALUES (1, 5, '2026-04-12 16:42:58.284729', 'Annual checkup', 0, '2026-04-09 16:42:58.286731', '2026-04-09 16:42:58.286731') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mAppointment Create (0.4ms)[0m  [1m[32mINSERT INTO "appointments" ("pet_id", "vet_id", "date", "reason", "status", "created_at", "updated_at") VALUES (2, 5, '2026-04-08 16:42:58.288145', 'Vaccination', 2, '2026-04-09 16:42:58.288209', '2026-04-09 16:42:58.288209') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mAppointment Create (0.4ms)[0m  [1m[32mINSERT INTO "appointments" ("pet_id", "vet_id", "date", "reason", "status", "created_at", "updated_at") VALUES (3, 6, '2026-04-09 16:42:58.289176', 'Dental cleaning', 1, '2026-04-09 16:42:58.289238', '2026-04-09 16:42:58.289238') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mAppointment Create (0.4ms)[0m  [1m[32mINSERT INTO "appointments" ("pet_id", "vet_id", "date", "reason", "status", "created_at", "updated_at") VALUES (4, 6, '2026-04-02 16:42:58.290194', 'Leg injury', 2, '2026-04-09 16:42:58.290251', '2026-04-09 16:42:58.290251') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mAppointment Create (0.4ms)[0m  [1m[32mINSERT INTO "appointments" ("pet_id", "vet_id", "date", "reason", "status", "created_at", "updated_at") VALUES (5, 5, '2026-04-16 16:42:58.291223', 'Skin irritation', 3, '2026-04-09 16:42:58.291282', '2026-04-09 16:42:58.291282') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTreatment Create (0.6ms)[0m  [1m[32mINSERT INTO "treatments" ("appointment_id", "name", "medication", "dosage", "notes", "administered_at", "created_at", "updated_at") VALUES (2, 'Vaccination', 'Rabies vaccine', '1ml', 'Perfect execution.', '2026-04-08 16:42:58.292228', '2026-04-09 16:42:58.294287', '2026-04-09 16:42:58.294287') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTreatment Create (0.4ms)[0m  [1m[32mINSERT INTO "treatments" ("appointment_id", "name", "medication", "dosage", "notes", "administered_at", "created_at", "updated_at") VALUES (2, 'Deworming', 'Fenbendazole', '0.5ml', 'Routine deworming administered.', '2026-04-08 16:42:58.295660', '2026-04-09 16:42:58.295710', '2026-04-09 16:42:58.295710') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTreatment Create (0.4ms)[0m  [1m[32mINSERT INTO "treatments" ("appointment_id", "name", "medication", "dosage", "notes", "administered_at", "created_at", "updated_at") VALUES (3, 'Dental Cleaning', 'Anesthesia', '2ml', 'Teeth in good condition.', '2026-04-09 16:42:58.296682', '2026-04-09 16:42:58.296729', '2026-04-09 16:42:58.296729') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTreatment Create (0.4ms)[0m  [1m[32mINSERT INTO "treatments" ("appointment_id", "name", "medication", "dosage", "notes", "administered_at", "created_at", "updated_at") VALUES (4, 'Pain Relief', 'Meloxicam', '1.5ml', 'Administered for leg pain.', '2026-04-02 16:42:58.297704', '2026-04-09 16:42:58.297750', '2026-04-09 16:42:58.297750') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTreatment Create (0.4ms)[0m  [1m[32mINSERT INTO "treatments" ("appointment_id", "name", "medication", "dosage", "notes", "administered_at", "created_at", "updated_at") VALUES (4, 'Bandaging', 'None', 'N/A', 'Leg bandaged. Keep dry for 5 days.', '2026-04-02 16:42:58.298723', '2026-04-09 16:42:58.298769', '2026-04-09 16:42:58.298769') RETURNING "id" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "owners" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mVet Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "vets" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mPet Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pets" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mTreatment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "treatments" /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Load (41.0ms)[0m  [1m[34mSELECT "owners".* FROM "owners" /* loading for pp */ LIMIT 11 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Load (1.0ms)[0m  [1m[34mSELECT "owners".* FROM "owners" ORDER BY "owners"."id" ASC LIMIT 1 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mOwner Load (0.5ms)[0m  [1m[34mSELECT "owners".* FROM "owners" ORDER BY "owners"."id" ASC LIMIT 1 /*application='Lab03MartinKs01'*/[0m
+  [1m[36mPet Load (0.5ms)[0m  [1m[34mSELECT "pets".* FROM "pets" WHERE "pets"."owner_id" = 7 /* loading for pp */ LIMIT 11 /*application='Lab03MartinKs01'*/[0m
