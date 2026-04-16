@@ -1,0 +1,29 @@
+<h1 class="mb-4">Appointments</h1>
+
+<table class="table table-bordered table-hover bg-white shadow-sm">
+  <thead class="table-success">
+    <tr>
+      <th>Date</th>
+      <th>Pet</th>
+      <th>Vet</th>
+      <th>Reason</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @appointments.each do |appointment| %>
+      <tr>
+        <td><%= link_to appointment.date.strftime("%B %d, %Y %H:%M"), appointment_path(appointment) %></td>
+        <td><%= link_to appointment.pet.name, pet_path(appointment.pet) %></td>
+        <td><%= link_to "#{appointment.vet.first_name} #{appointment.vet.last_name}", vet_path(appointment.vet) %></td>
+        <td><%= appointment.reason %></td>
+        <td>
+          <% status_colors = { 0 => "primary", 1 => "warning", 2 => "success", 3 => "danger" } %>
+          <span class="badge bg-<%= status_colors[appointment.status] %>">
+            <%= AppointmentsController::STATUSES[appointment.status] %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
